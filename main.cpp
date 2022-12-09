@@ -6,9 +6,11 @@
 //
 
 #include <iostream>
-#include "Date.hpp"
+#include "OrganizeLife.hpp"
+using namespace std;
 
 int main() {
+    /* get current date and print*/
     time_t now=time(0);
     struct tm* localtm=localtime(&now);
     int current_year=1900+localtm->tm_year;
@@ -17,8 +19,13 @@ int main() {
     Date current_date(current_month,current_day,current_year);
     cout<<current_date<<endl;
     
+    /*get number of assignments*/
     int num_assignments;
-    cout<<"Enter number of assignments:"<<endl;
+    cout<<"Enter number of assignments: ";
     cin>>num_assignments;
+    
+    Assignment* AssignmentArr[num_assignments];
+    OrganizeLife(current_date, num_assignments);
+    
     return 0;
 }

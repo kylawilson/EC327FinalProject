@@ -15,15 +15,18 @@ class Assignment
 {
 private:
   Date due_date, todays_date;
-  int assignment_type;
+  int assignment_type, days_until_due;
   char priority;
   bool is_complete;
 public:
   Assignment(Date todays_date);
   Assignment(Date todays_date, Date due_date, int assignment_type);
+  ~Assignment();
   void calcPriority();
   void markComplete();
   bool isComplete();
-
 };
+
+void OrganizeLife(Date, int);
+
 #endif /* OrganizeLife_hpp */
