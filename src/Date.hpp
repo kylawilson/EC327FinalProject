@@ -18,6 +18,7 @@ public:
   int month, day, year;
   Date(int, int, int);
   Date();
+  virtual ~Date();
   friend ostream& operator<<(ostream&os, const Date& date);
   friend Date& operator+(const Date& date, const Date& dateadded);
   friend Date& operator-(const Date& date, const Date& dateadded);

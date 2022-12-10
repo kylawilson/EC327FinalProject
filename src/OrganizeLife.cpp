@@ -7,7 +7,8 @@
 
 #include "OrganizeLife.hpp"
 
-void OrganizeLife(Date current_date, int num_assignments)
+/*intakes assignments, creates objects for them and stores them all in an array of Assignment pointers, accessible from main*/
+void OrganizeLife(Assignment* Assignments[], Date current_date, int num_assignments)
 {
     /*intake all assignmnets & their details, create assignment objects for each*/
   for (int i=0; i<num_assignments;i++)
@@ -20,40 +21,14 @@ void OrganizeLife(Date current_date, int num_assignments)
       cin>>daydue;
       cout<<"Enter due date; year (#): ";
       cin>>yeardue;
+      
+      /*insert error-catching if the due date is before today's date*/
+      
       Date duedate(monthdue, daydue, yeardue);
       cout<<"Assignment type..."<<endl;
-      cout<<"1 for Homework"<<endl<<"2 for Project"<<endl<<"3 for exam/study"<<endl;
+      cout<<"1 for Homework"<<endl<<"2 for Project"<<endl<<"3 for exam/study"<<"4 for other..."<<endl;
       cout<<"Enter: ";
       cin>>type;
-      Assignment* AssignmentArr[num_assignments];
-      AssignmentArr[i]=new Assignment(current_date,duedate,type);
+      Assignments[i]=new Assignment(current_date,duedate,type);
   }
-}
-
-Assignment::Assignment(Date in_date)
-:todays_date(in_date), is_complete(false)
-{
-    
-}
-Assignment::Assignment(Date in_date, Date out_date, int type)
-:todays_date(in_date), due_date(out_date), assignment_type(type), is_complete(false)
-{
-    
-}
-void Assignment::calcPriority()
-{
-    
-}
-void Assignment::markComplete()
-{
-    
-}
-bool Assignment::isComplete()
-{
-    return is_complete;
-}
-
-Assignment::~Assignment()
-{
-    
 }

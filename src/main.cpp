@@ -21,11 +21,25 @@ int main() {
     
     /*get number of assignments*/
     int num_assignments;
-    cout<<"Enter number of assignments: ";
-    cin>>num_assignments;
+    do{
+        cout<<"Enter number of assignments: ";
+        cin>>num_assignments;
+    }while (num_assignments>100);
     
+    /*create an array of assignment pointers*/
     Assignment* AssignmentArr[num_assignments];
-    OrganizeLife(current_date, num_assignments);
+    
+    /*call the function to collect all assignment data and put into AssignmentArr*/
+    OrganizeLife(AssignmentArr, current_date, num_assignments);
+    
+    /*test code - ignore*/
+    /*cout<<AssignmentArr[0]->GetDueDate()<<endl;*/
+    
+    /*delete AssignmentArr from the heap*/
+    for (int j=0;j<num_assignments;j++)
+    {
+        delete AssignmentArr[j];
+    }
     
     return 0;
 }

@@ -20,13 +20,18 @@ Date::Date()
   cout<<"Date not assigned. Default constructed"<<endl;
 }
 
-  
+/*Date destructor*/
+Date::~Date(){
+}
+
+/*Overload << operator for Date class*/
 ostream& operator << (ostream &os, const Date &date)
 {
   os << date.month << "/" << date.day << "/" << date.year << endl;
   return os;
 }
 
+/*Overload + operator for date class*/
 Date& operator+ (const Date& date, const Date& dateadded)
 {
     int mnew, dnew, ynew;
@@ -57,6 +62,7 @@ Date& operator+ (const Date& date, const Date& dateadded)
   return *retdate;
 }
 
+/*Overload - operator for Date class*/
 Date& operator- (const Date& date, const Date& dateadded)
 {
     int mnew, dnew, ynew;
