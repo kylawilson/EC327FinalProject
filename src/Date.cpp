@@ -7,10 +7,22 @@
 
 #include "Date.hpp"
 
-
+/*Date constructor*/
 Date::Date(int m, int d, int y)
 :month(m),day(d),year(y)
 {
+    if (m>12 | m<0){
+        cout<<"Thats not a month..."<<endl;
+        exit(0);
+    }
+    if (d>31 |d<0){
+        cout<<"Thats not a day..."<<endl;
+        exit(0);
+    }
+    if (y<0){
+        cout<<"Thats not a year..."<<endl;
+        exit(0);
+    }
 }
 
 /* default Date constructor*/
@@ -72,8 +84,7 @@ Date& operator- (const Date& date, const Date& dateadded)
     }
   else
   {
-    cout<<"Error: invalid month entry"<<endl;
-    mnew=date.month;
+    mnew=0;
   }
   if (date.day>dateadded.day | (date.day+dateadded.day)<=31)
     {
@@ -81,8 +92,7 @@ Date& operator- (const Date& date, const Date& dateadded)
     }
   else
   {
-    cout<<"Error: invalid day entry"<<endl;
-    dnew=date.day;
+    dnew=0;
   }
   if (date.year>dateadded.year)
     {
@@ -90,8 +100,7 @@ Date& operator- (const Date& date, const Date& dateadded)
     }
   else
   {
-    cout<<"Error: invalid year entry"<<endl;
-    ynew=date.year;
+    ynew=0;
   }
     
   Date newdate=Date(mnew, dnew, ynew);

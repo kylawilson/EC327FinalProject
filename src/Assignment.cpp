@@ -19,10 +19,23 @@ Assignment::Assignment(Date in_date)
     
 }
 /*Assignment Constructor 2*/
-Assignment::Assignment(Date in_date, Date out_date, int type)
-:todays_date(in_date), due_date(out_date), assignment_type(type), is_complete(false)
+Assignment::Assignment(Date in_date, Date out_date, int type, string classnm)
+:todays_date(in_date), due_date(out_date), is_complete(false), classname(classnm)
 {
-    
+    Date time_till_due=due_date-todays_date;
+    days_until_due=time_till_due.day+((time_till_due.month)*30)+((time_till_due.year)*365);
+    if (is_complete==true)
+        status="Complete";
+    else
+        status="Incomplete";
+    if (type==1)
+        assignment_type="Homework";
+    else if (type==2)
+        assignment_type="Project";
+    else if (type==3)
+        assignment_type="Exam";
+    else if (type==4)
+        assignment_type="Other";
 }
 
 /*Assignment Destructor*/
@@ -38,30 +51,45 @@ void Assignment::calcPriority()
 void Assignment::markComplete()
 {
     is_complete=true;
+    status="Complete";
 }
 /*Assignment member function that returns whether or not the assignment is complete*/
-bool Assignment::isComplete()
+string Assignment::showStatus() const
 {
-    return is_complete;
+    return status;
 }
 
 /*Assignment member function that returns due date of assignment*/
-Date Assignment::GetDueDate()
+Date Assignment::GetDueDate() const
 {
     return due_date;
 }
-/*Returns assignment */
-int Assignment::GetAssignmentType()
+
+/*Assignment member function that returns days until assignment is due*/
+int Assignment::GetDaysUntilDue() const
 {
-    if (assignment_type==1)
-        cout<<"Homework"<<endl;
-    else if (assignment_type==2)
-        cout<<"Project"<<endl;
-    else if (assignment_type==3)
-        cout<<"Exam"<<endl;
-    else if (assignment_type==4)
-        cout<<"Other"<<endl;
-    else
-        cout<<"Thats weird...ERROR!"<<endl;
+    return days_until_due;
+    
+}
+/*Returns assignment */
+string Assignment::GetAssignmentType() const
+{
     return assignment_type;
 }
+
+string Assignment::GetClassName() const
+{
+    return classname;
+}
+
+ostream& operator << (ostream &os, const Assignment& assignment)
+{
+  os << "Class: "<<assignment.GetClassName()<<endl<<"Due Date: "<< assignment.GetDueDate() << "Assignment Type: " << assignment.GetAssignmentType() << endl << "Days Until Due: "<< assignment.GetDaysUntilDue() << endl << "Status: " << assignment.showStatus() << endl;
+  return os;
+}
+
+void Assignment::setAssignmentID(int id)
+{
+    id_num=id;
+}
+

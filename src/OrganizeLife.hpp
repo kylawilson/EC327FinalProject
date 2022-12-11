@@ -10,7 +10,13 @@
 
 #include <stdio.h>
 #include "Assignment.hpp"
+#include <list>
+#include <fstream>
 
-void OrganizeLife(Assignment* [],Date, int);
+void OrganizeLife(list <Assignment> & list_of_assignments,Date, int);
+void showlist(list<Assignment> list_of_assignments);
+void deleteAssignment(list <Assignment> & list_of_assignments, int assignment_id);
+void completeAssignment(list <Assignment> & list_of_assignments, int assignment_id);
+void saveToFile(list <Assignment> list_of_assignments, string filename);
 
 #endif /* OrganizeLife_hpp */
