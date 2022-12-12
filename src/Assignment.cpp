@@ -22,20 +22,30 @@ Assignment::Assignment(Date in_date)
 Assignment::Assignment(Date in_date, Date out_date, int type, string classnm)
 :todays_date(in_date), due_date(out_date), is_complete(false), classname(classnm)
 {
-    Date time_till_due=due_date-todays_date;
+    Date time_till_due=out_date-in_date;
+    cout<<time_till_due;
     days_until_due=time_till_due.day+((time_till_due.month)*30)+((time_till_due.year)*365);
     if (is_complete==true)
         status="Complete";
     else
         status="Incomplete";
-    if (type==1)
+    if (type==1){
         assignment_type="Homework";
-    else if (type==2)
+        hours_of_work=1;
+    }
+    else if (type==2){
         assignment_type="Project";
-    else if (type==3)
+        hours_of_work=5;
+    }
+    else if (type==3){
         assignment_type="Exam";
-    else if (type==4)
+        hours_of_work=10;
+    }
+    else if (type==4){
         assignment_type="Other";
+        cout<<"Enter approximate hours of work (whole #): ";
+        cin>>hours_of_work;
+    }
 }
 
 /*Assignment Destructor*/
@@ -52,9 +62,10 @@ void Assignment::markComplete()
 {
     is_complete=true;
     status="Complete";
+    hours_of_work=0;
 }
 /*Assignment member function that returns whether or not the assignment is complete*/
-string Assignment::showStatus() const
+string Assignment::getStatus() const
 {
     return status;
 }
@@ -84,7 +95,7 @@ string Assignment::GetClassName() const
 
 ostream& operator << (ostream &os, const Assignment& assignment)
 {
-  os << "Class: "<<assignment.GetClassName()<<endl<<"Due Date: "<< assignment.GetDueDate() << "Assignment Type: " << assignment.GetAssignmentType() << endl << "Days Until Due: "<< assignment.GetDaysUntilDue() << endl << "Status: " << assignment.showStatus() << endl;
+  os << "Class: "<<assignment.GetClassName()<<endl<<"Due Date: "<< assignment.GetDueDate() << "Assignment Type: " << assignment.GetAssignmentType() << endl << "Days Until Due: "<< assignment.GetDaysUntilDue() << endl << "Status: " << assignment.getStatus() << endl;
   return os;
 }
 
@@ -93,3 +104,7 @@ void Assignment::setAssignmentID(int id)
     id_num=id;
 }
 
+int Assignment::getHrsOfWork()
+{
+    return hours_of_work;
+}

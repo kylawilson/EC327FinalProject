@@ -39,7 +39,7 @@ int main() {
     
     char in;
     do{
-        cout<<"Enter a command."<<endl<<"'a' to add assignment(s)"<<endl<<"'d' to delete an assignement"<<endl<< "'c' to mark an assignment as complete"<<endl<<"'x' to mark an assignment as complete and delete the assignment immediately"<<endl<<"'s' to save assignments to a file"<<endl<<"'q' to quit"<<endl<<"Enter: ";
+        cout<<"Enter a command."<<endl<<"'a' to add assignment(s)"<<endl<<"'d' to delete an assignement"<<endl<< "'c' to mark an assignment as complete"<<endl<<"'s' search your current assignments"<<endl<<"'q' to quit"<<endl<<"Enter: ";
         cin>>in;
         
         switch (in)
@@ -50,44 +50,111 @@ int main() {
                 OrganizeLife(list_of_assignments, current_date, num_assignments);
                 break;
             case 'd':
-                int d;
-                showlist(list_of_assignments);
-                cout<<"Which assignment would you like to delete?"<<endl;
-                cout<<"Enter Assignment ID: ";
-                cin>>d;
-                deleteAssignment(list_of_assignments, d);
-                /*printlist*/
-                showlist(list_of_assignments);
+            {
+                if (!list_of_assignments.empty())
+                {
+                    int d;
+                    showlist(list_of_assignments);
+                    cout<<"Which assignment would you like to delete?"<<endl;
+                    cout<<"Enter Assignment ID: ";
+                    cin>>d;
+                    deleteAssignment(list_of_assignments, d);
+                    /*printlist*/
+                    showlist(list_of_assignments);
+                }
+                else
+                    cout<<"Cannot delete any assignments because there are no assignments to delete."<<endl;
                 break;
+            }
             case 'c':
-                int c;
-                cout<<"Which assignment would you like to mark complete?"<<endl;
-                showlist(list_of_assignments);
-                cout<<"Enter Assignment ID: ";
-                cin>>c;
-                completeAssignment(list_of_assignments, c);
-                /*printlist*/
-                showlist(list_of_assignments);
+            {
+                if (!list_of_assignments.empty())
+                {
+                    int c, del;
+                    cout<<"Which assignment would you like to mark complete?"<<endl;
+                    showlist(list_of_assignments);
+                    cout<<"Enter Assignment ID: ";
+                    cin>>c;
+                    completeAssignment(list_of_assignments, c);
+                    /*printlist*/
+                    showlist(list_of_assignments);
+                    cout<<"Marked Complete. Would you like to now delete this assignment? (y/n): ";
+                    cin>>del;
+                    if (del=='y')
+                    {
+                        deleteAssignment(list_of_assignments, c);
+                    }
+                }
+                else
+                    cout<<"Cannot mark complete because there are no assignments to mark complete."<<endl;
                 break;
-            case 'x':
-                int x;
-                cout<<"Which assignment would you like to mark complete & delete?"<<endl;
-                /*printlist*/
-                showlist(list_of_assignments);
-                cout<<"Enter Assignment ID: ";
-                cin>>x;
-                completeAssignment(list_of_assignments, x);
-                deleteAssignment(list_of_assignments, x);
-                /*printlist*/
-                showlist(list_of_assignments);
-                break;
-            /*case 's':
-                saveToFile(list_of_assignments, filename);*/
-            default:
-                cout<<"default...quitting"<<endl;
-                in='q';
-        }
-    }while (in!='q');
-
-    return 0;
-}
+            }
+            case 's':
+            {
+                char srch;
+                cout<<"Choose what you would like to search for: "<<endl<<"Complete Assignments ('c')"<<endl<<"Incomplete Assignments ('i')"<<endl<<"Class Name ('n')"<<endl<<"Assignment ID ('a')"<<endl<<"Due Date('d')"<<endl<<"Enter: ";
+                cin>>srch;
+                list <Assignment> temp;
+                switch(srch)
+                {
+                    case'a':
+                    {
+                        temp=searchListID(list_of_assignments);
+                        showlist(temp);
+                        break;
+                    }
+                    case 'd':
+                    {
+                        temp=searchListDate(list_of_assignments);
+                        showlist(temp);
+                        break;
+                    }
+                    case 'c':
+                    {
+                        temp=searchListComp(list_of_assignments);
+                        showlist(temp);
+                        break;
+                    }
+                    case 'i':
+                    {
+                        temp=searchListIncomp(list_of_assignments);
+                        showlist(temp);
+                        break;
+                    }
+                    case 'n':
+                    {
+                        temp=searchListName(list_of_assignments);
+                        showlist(temp);
+                        break;
+                    }
+                }
+            }
+                        /*case 's':
+                         saveToFile(list_of_assignments, filename);*/
+                    case 'q':
+                        char answer;
+                        if (!list_of_assignments.empty())
+                        {
+                            cout<<"You still have uncompleted assignments remaining. Are you sure you want to quit? (y/n): ";
+                            cin>>answer;
+                            switch (answer)
+                            {
+                                case 'n':
+                                    in='a';
+                                    break;
+                                default:
+                                    cout<<"Quitting..."<<endl;
+                                    break;
+                            }
+                        }
+                        else
+                            cout<<"Quitting..."<<endl;
+                        break;
+                    default:
+                        cout<<"default...quitting"<<endl;
+                        in='q';
+                }
+        }while (in!='q');
+        
+        return 0;
+    }

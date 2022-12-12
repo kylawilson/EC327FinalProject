@@ -77,7 +77,11 @@ Date& operator+ (const Date& date, const Date& dateadded)
 /*Overload - operator for Date class*/
 Date& operator- (const Date& date, const Date& dateadded)
 {
-    int mnew, dnew, ynew;
+  int mnew, dnew, ynew;
+    mnew=(date.month)-(dateadded.month);
+    dnew=(date.day)-(dateadded.day);
+    ynew=(date.year)-(dateadded.year);
+    /*
   if (date.month>dateadded.month)
     {
     mnew=date.month-dateadded.month;
@@ -102,8 +106,17 @@ Date& operator- (const Date& date, const Date& dateadded)
   {
     ynew=0;
   }
-    
-  Date newdate=Date(mnew, dnew, ynew);
+    */
+  Date newdate(mnew, dnew, ynew);
   Date* retdate=&newdate;
   return *retdate;
+}
+
+/*Overload == opertaor for Date class*/
+bool operator==(const Date& date, const Date& dateadded)
+{
+    if (((date.month==dateadded.month) & (date.day==dateadded.day)) & (date.year==dateadded.year))
+        return true;
+    else
+        return false;
 }

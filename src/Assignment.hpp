@@ -15,12 +15,12 @@ class Assignment
 {
 private:
   Date due_date, todays_date;
-  int days_until_due;
+  int days_until_due, hours_of_work;
   char priority;
   bool is_complete;
   string classname, status, assignment_type;
 public:
-    int id_num;
+  int id_num;
   Assignment(Date todays_date);
   Assignment(Date todays_date, Date due_date, int assignment_type, string classname);
   virtual ~Assignment();
@@ -30,8 +30,9 @@ public:
   string GetClassName() const;
   void calcPriority();
   void markComplete();
-  string showStatus() const;
+  string getStatus() const;
   void setAssignmentID(int);
+  int getHrsOfWork();
   friend ostream& operator << (ostream &os, const Assignment &assignment);
 };
 #endif /* Assignment_hpp */

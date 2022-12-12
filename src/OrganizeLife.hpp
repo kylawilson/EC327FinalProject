@@ -17,6 +17,12 @@ void OrganizeLife(list <Assignment> & list_of_assignments,Date, int);
 void showlist(list<Assignment> list_of_assignments);
 void deleteAssignment(list <Assignment> & list_of_assignments, int assignment_id);
 void completeAssignment(list <Assignment> & list_of_assignments, int assignment_id);
-void saveToFile(list <Assignment> list_of_assignments, string filename);
+/*void saveToFile(list <Assignment> list_of_assignments, string filename);*/
+list<Assignment> searchListComp(list <Assignment> list_of_assignments);
+list<Assignment> searchListIncomp(list <Assignment> list_of_assignments);
+list<Assignment> searchListIncomp(list <Assignment> list_of_assignments);
+list<Assignment> searchListID(list <Assignment> list_of_assignments);
+list<Assignment> searchListDate(list <Assignment> list_of_assignments);
+list<Assignment> searchListName(list <Assignment> list_of_assignments);
 
 #endif /* OrganizeLife_hpp */
