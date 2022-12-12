@@ -6,15 +6,19 @@
 //
 
 #include "Date.hpp"
-
+/*returns month member variable*/
 int Date::getMonth()
 {
     return month;
 }
+
+/*returns day member variable*/
 int Date::getDay()
 {
     return day;
 }
+
+/*returns year member variable*/
 int Date::getYear()
 {
     return year;
@@ -54,7 +58,8 @@ Date::Date()
 }
 
 /*Date destructor*/
-Date::~Date(){
+Date::~Date()
+{
 }
 
 /*Overload << operator for Date class*/
@@ -72,23 +77,26 @@ Date& operator+ (const Date& date, const Date& dateadded)
     {
         mnew=date.month+dateadded.month;
     }
-  else
-    cout<<"Error: invalid month entry"<<endl;
-    mnew=date.month;
+    else
+    {
+        throw(date.month);
+    }
   if (((date.day+dateadded.day)<=31) & (date.day+dateadded.day>0))
     {
     dnew=date.day+dateadded.day;
     }
   else
-    cout<<"Error: invalid day entry"<<endl;
-    dnew=date.day;
+  {
+      throw(date.day);
+  }
   if (date.year+dateadded.year>0)
     {
     ynew=date.year+dateadded.year;
     }
   else
-    cout<<"Error: invalid year entry"<<endl;
-    ynew=date.year;
+  {
+      throw (date.year);
+  }
     
   Date newdate=Date(mnew, dnew, ynew);
   Date* retdate=&newdate;
@@ -102,38 +110,12 @@ Date& operator-(const Date& date, const Date& dateadded)
     mnew=(date.month)-(dateadded.month);
     dnew=(date.day)-(dateadded.day);
     ynew=(date.year)-(dateadded.year);
-    /*
-  if (date.month>dateadded.month)
-    {
-    mnew=date.month-dateadded.month;
-    }
-  else
-  {
-    mnew=0;
-  }
-  if (date.day>dateadded.day | (date.day+dateadded.day)<=31)
-    {
-    dnew=date.day-dateadded.day;
-    }
-  else
-  {
-    dnew=0;
-  }
-  if (date.year>dateadded.year)
-    {
-    ynew=date.year-dateadded.year;
-    }
-  else
-  {
-    ynew=0;
-  }
-    */
   Date newdate(mnew, dnew, ynew);
   Date* retdate=&newdate;
   return *retdate;
 }
 
-/*Overload == operator for Date class*/
+/*Overload == opertaor for Date class*/
 bool operator==(const Date& date, const Date& dateadded)
 {
     if (((date.month==dateadded.month) & (date.day==dateadded.day)) & (date.year==dateadded.year))

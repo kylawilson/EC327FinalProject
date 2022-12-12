@@ -15,18 +15,24 @@ using namespace std;
 class Date
 {
 private:
+    /*onitialize private member variables*/
     int month, day, year;
 public:
-  Date(int, int, int);
-  Date();
-  virtual ~Date();
+    /*constructor*/
+    Date(int, int, int);
+    /*default constructor*/
+    Date();
+    /*destructor*/
+    virtual ~Date();
+    /*getter functions*/
     int getMonth();
     int getDay();
     int getYear();
-  friend ostream& operator<<(ostream&os, const Date& date);
-  friend Date& operator+(const Date& date, const Date& dateadded);
-  friend Date& operator-(const Date& date, const Date& dateadded);
-  friend bool operator==(const Date& date, const Date& dateadded);
+    /*overloaded operators*/
+    friend ostream& operator<<(ostream&os, const Date& date);
+    friend Date& operator+(const Date& date, const Date& dateadded);
+    friend Date& operator-(const Date& date, const Date& dateadded);
+    friend bool operator==(const Date& date, const Date& dateadded);
     friend bool operator!=(const Date& date, const Date& dateadded);
 };
 

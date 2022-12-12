@@ -76,7 +76,7 @@ int main() {
             {
                 if (!list_of_assignments.empty())
                 {
-                    int c, del;
+                    int c;
                     cout<<"Which assignment would you like to mark complete?"<<endl;
                     showlist(list_of_assignments);
                     cout<<"Enter Assignment ID: ";
@@ -84,17 +84,9 @@ int main() {
                     completeAssignment(list_of_assignments, c);
                     /*printlist*/
                     showlist(list_of_assignments);
-                    cout<<"Marked Complete. Would you like to now delete this assignment? (y/n): ";
-                    cin>>del;
-                    if (del=='y')
-                    {
-                        deleteAssignment(list_of_assignments, c);
-                        break;
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    cout<<"Marked Complete. Now Deleting...: "<<endl;
+                    deleteAssignment(list_of_assignments, c);
+                    break;
                 }
                 else
                 {

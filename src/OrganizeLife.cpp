@@ -17,11 +17,11 @@ void OrganizeLife(list <Assignment> & list_of_assignments, Date current_date, in
       int monthdue, daydue, yeardue, type;
       string classname;
       cout<<"Assignment "<<(list_of_assignments.size()+1)<<": "<<endl;
-      cout<<"Enter the due date month (#): ";
+      cout<<"Enter due date; month (#): ";
       cin>>monthdue;
-      cout<<"Enter the due date day (#): ";
+      cout<<"Enter due date; day (#): ";
       cin>>daydue;
-      cout<<"Enter the due date year (#): ";
+      cout<<"Enter due date; year (#): ";
       cin>>yeardue;
       
       /*insert error-catching if the due date is before today's date*/
@@ -87,8 +87,8 @@ void saveToFile(list <Assignment> list_of_assignments, string filename)
         }
     }
     file.close();
-    
-    string myText;
+    /* check to see if the file was propely saved*/
+    /*string myText;
     ifstream MyReadFile(filename);
 
     // Use a while loop together with the getline() function to read the file line by line
@@ -97,7 +97,7 @@ void saveToFile(list <Assignment> list_of_assignments, string filename)
       cout << myText;
     }
     // Close the file
-    MyReadFile.close();
+    MyReadFile.close();*/
 }
 void searchList(list <Assignment> list_of_assignments)
 {
