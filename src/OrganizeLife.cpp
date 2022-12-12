@@ -17,11 +17,11 @@ void OrganizeLife(list <Assignment> & list_of_assignments, Date current_date, in
       int monthdue, daydue, yeardue, type;
       string classname;
       cout<<"Assignment "<<(list_of_assignments.size()+1)<<": "<<endl;
-      cout<<"Enter due date; month (#): ";
+      cout<<"Enter the due date month (#): ";
       cin>>monthdue;
-      cout<<"Enter due date; day (#): ";
+      cout<<"Enter the due date day (#): ";
       cin>>daydue;
-      cout<<"Enter due date; year (#): ";
+      cout<<"Enter the due date year (#): ";
       cin>>yeardue;
       
       /*insert error-catching if the due date is before today's date*/
