@@ -23,16 +23,26 @@ int Date::getYear()
 /*Date constructor*/
 Date::Date(int m, int d, int y)
 {
-    if (m<0 |m>12)
+    /*error checking*/
+    if (m<0 | m>12)
+    {
         month=1;
+        cout<<"Month defaulted to 1"<<endl;
+    }
     else
         month=m;
     if (d<0 |d>31)
+    {
         day=1;
+        cout<<"Day defaulted to 1"<<endl;
+    }
     else
         day=d;
     if (y<2022)
+    {
         year=2023;
+        cout<<"Year defaulted to 2023"<<endl;
+    }
     else
         year=y;
 }

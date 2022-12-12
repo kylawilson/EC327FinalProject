@@ -98,41 +98,43 @@ int main() {
             }
             case 's':
             {
-                list <Assignment> temp;
-                int srch;
-                cout<<"Choose what you would like to search for: "<<endl<<"Complete Assignments (1)"<<endl<<"Incomplete Assignments (2)"<<endl<<"Class Name (3)"<<endl<<"Assignment ID (4)"<<endl<<"Due Date(5)"<<endl<<"Enter: ";
-                cin>>srch;
-                    if (srch==1)
+                if (!list_of_assignments.empty())
+                {
+                    list <Assignment> temp;
+                    int srch;
+                    cout<<"Choose what you would like to search for: "<<endl<<"Complete Assignments (1)"<<endl<<"Incomplete Assignments (2)"<<endl<<"Class Name (3)"<<endl<<"Assignment ID (4)"<<endl<<"Due Date (5)"<<endl<<"Enter: ";
+                    cin>>srch;
+                    if (srch==4)
                     {
-                        temp=searchListID(list_of_assignments);
-                        showlist(temp);
-                        break;
-                    }
-                    else if (srch==2)
-                    {
-                        temp=searchListDate(list_of_assignments);
-                        showlist(temp);
-                        break;
-                    }
-                    else if (srch==3)
-                    {
-                        temp=searchListComp(list_of_assignments);
-                        showlist(temp);
-                        break;
-                    }
-                    else if (srch==4)
-                    {
-                        temp=searchListIncomp(list_of_assignments);
-                        showlist(temp);
-                        break;
+                        showlist(searchListID(list_of_assignments));
                     }
                     else if (srch==5)
                     {
+                        temp=searchListDate(list_of_assignments);
+                        showlist(temp);
+                    }
+                    else if (srch==1)
+                    {
+                        temp=searchListComp(list_of_assignments);
+                        showlist(temp);
+                    }
+                    else if (srch==2)
+                    {
+                        temp=searchListIncomp(list_of_assignments);
+                        showlist(temp);
+                    }
+                    else if (srch==3)
+                    {
                         temp=searchListName(list_of_assignments);
                         showlist(temp);
-                        break;
                     }
-                
+                }
+                else
+                {
+                    cout<<"Cannot search because there are no assignments to search through."<<endl;
+                    break;
+                }
+                break;
             }
                         /*case 's':
                          saveToFile(list_of_assignments, filename);*/
