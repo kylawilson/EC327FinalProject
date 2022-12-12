@@ -27,6 +27,7 @@ public:
   friend Date& operator+(const Date& date, const Date& dateadded);
   friend Date& operator-(const Date& date, const Date& dateadded);
   friend bool operator==(const Date& date, const Date& dateadded);
+    friend bool operator!=(const Date& date, const Date& dateadded);
 };
 
 #endif /* Date_hpp */
