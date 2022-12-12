@@ -24,5 +24,6 @@ list<Assignment> searchListIncomp(list <Assignment> list_of_assignments);
 list<Assignment> searchListID(list <Assignment> list_of_assignments);
 list<Assignment> searchListDate(list <Assignment> list_of_assignments);
 list<Assignment> searchListName(list <Assignment> list_of_assignments);
+Date getCurrentDate();
 
 #endif /* OrganizeLife_hpp */

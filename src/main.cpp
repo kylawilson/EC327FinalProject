@@ -13,27 +13,26 @@
 using namespace std;
 
 int main() {
-    /* get current date and print*/
-    time_t now=time(0);
-    struct tm* localtm=localtime(&now);
-    int current_year=1900+localtm->tm_year;
-    int current_month=1+localtm->tm_mon;
-    int current_day=localtm->tm_mday;
-    Date current_date(current_month,current_day,current_year);
-    cout<<current_date<<endl;
     
     string filename="AssignmentSaveFile.rtf";
+    Date current_date;
+    
+    current_date=getCurrentDate();
+    cout<<current_date<<endl;
     
     /*create a list of assignments*/
     list <Assignment> list_of_assignments;
-    /*get number of assignments*/
+    
+    /*get initial number of assignments*/
     int num_assignments;
     do{
-        cout<<"Enter number of assignments: ";
+        cout<<"Enter initial number of assignments: ";
         cin>>num_assignments;
     }while (num_assignments>100);
+    
     /*call the function to collect all assignment data and put into list*/
     OrganizeLife(list_of_assignments, current_date, num_assignments);
+    
     /*printlist*/
     showlist(list_of_assignments);
     
@@ -63,6 +62,7 @@ int main() {
                     deleteAssignment(list_of_assignments, d);
                     /*printlist*/
                     showlist(list_of_assignments);
+                    break;
                 }
                 else
                     cout<<"Cannot delete any assignments because there are no assignments to delete."<<endl;
@@ -85,6 +85,7 @@ int main() {
                     if (del=='y')
                     {
                         deleteAssignment(list_of_assignments, c);
+                        break;
                     }
                     else
                         break;

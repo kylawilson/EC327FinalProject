@@ -17,7 +17,6 @@ Date::Date(int m, int d, int y)
 Date::Date()
 :month(1),day(1),year(1970)
 {
-  cout<<"Date not assigned. Default constructed"<<endl;
 }
 
 /*Date destructor*/

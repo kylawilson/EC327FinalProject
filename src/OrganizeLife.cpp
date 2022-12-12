@@ -159,3 +159,15 @@ list <Assignment> searchListDate(list <Assignment> list_of_assignments)
     }
     return list_of_assignments;
 }
+
+Date getCurrentDate()
+{
+    /* get current date and print*/
+    time_t now=time(0);
+    struct tm* localtm=localtime(&now);
+    int current_year=1900+localtm->tm_year;
+    int current_month=1+localtm->tm_mon;
+    int current_day=localtm->tm_mday;
+    Date current_date(current_month,current_day,current_year);
+    return current_date;
+}
