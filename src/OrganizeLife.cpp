@@ -25,7 +25,7 @@ void OrganizeLife(list <Assignment> & list_of_assignments, Date current_date, in
       cin>>yeardue;
 
       cout<<"Enter class name: ";
-      cin>>classname;
+      getline(cin>>ws,classname);
       Date duedate(monthdue, daydue, yeardue);
       cout<<"Assignment type..."<<endl;
       cout<<"1 for Homework"<<endl<<"2 for Project"<<endl<<"3 for exam/study"<<endl<<"4 for other..."<<endl;
@@ -42,6 +42,7 @@ void OrganizeLife(list <Assignment> & list_of_assignments, Date current_date, in
   }
 }
 
+/*print list of assignments*/
 void showlist(list<Assignment> list_of_assignments)
 {
     int count=1,
@@ -56,6 +57,7 @@ void showlist(list<Assignment> list_of_assignments)
     cout<<"Approximate Total Hours of Work: "<<total_work<<endl;
 }
 
+/*delete an assignment*/
 void deleteAssignment(list <Assignment> & list_of_assignments, int assignment_id)
 {
     list<Assignment>::iterator it;
@@ -64,6 +66,7 @@ void deleteAssignment(list <Assignment> & list_of_assignments, int assignment_id
     it=list_of_assignments.erase(it);
 }
 
+/*mark an assignment complete*/
 void completeAssignment(list <Assignment> & list_of_assignments, int assignment_id)
 {
     list<Assignment>::iterator it;
@@ -72,7 +75,7 @@ void completeAssignment(list <Assignment> & list_of_assignments, int assignment_
     it->markComplete();
     cout<<*it<<endl;
 }
-
+/*Save the list of assignments to a file*/
 void saveToFile(list <Assignment> list_of_assignments, string filename)
 {
     ofstream file;
