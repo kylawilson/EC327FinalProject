@@ -77,14 +77,14 @@ void completeAssignment(list <Assignment> & list_of_assignments, int assignment_
 
 void saveToFile(list <Assignment> list_of_assignments, string filename)
 {
-    fstream file(filename);
-    if (!file.good())
+    ofstream file;
+    file.open(filename);
+    if (file.is_open())
     {
-        cout<<"file doesn't exist"<<endl;
-    }
-    for (list<Assignment>::iterator it=list_of_assignments.begin(); it != list_of_assignments.end(); ++it)
-    {
-        file<<*it<<endl;
+        for (list<Assignment>::iterator it=list_of_assignments.begin(); it != list_of_assignments.end(); ++it)
+        {
+            file<<*it<<endl;
+        }
     }
     file.close();
     
@@ -99,7 +99,37 @@ void saveToFile(list <Assignment> list_of_assignments, string filename)
     // Close the file
     MyReadFile.close();
 }
-
+void searchList(list <Assignment> list_of_assignments)
+{
+    list <Assignment> temp;
+    int srch;
+    cout<<"Choose what you would like to search for: "<<endl<<"Complete Assignments (1)"<<endl<<"Incomplete Assignments (2)"<<endl<<"Class Name (3)"<<endl<<"Assignment ID (4)"<<endl<<"Due Date (5)"<<endl<<"Enter: ";
+    cin>>srch;
+    if (srch==4)
+    {
+        showlist(searchListID(list_of_assignments));
+    }
+    else if (srch==5)
+    {
+        temp=searchListDate(list_of_assignments);
+        showlist(temp);
+    }
+    else if (srch==1)
+    {
+        temp=searchListComp(list_of_assignments);
+        showlist(temp);
+    }
+    else if (srch==2)
+    {
+        temp=searchListIncomp(list_of_assignments);
+        showlist(temp);
+    }
+    else if (srch==3)
+    {
+        temp=searchListName(list_of_assignments);
+        showlist(temp);
+    }
+}
 list <Assignment> searchListComp(list <Assignment> list_of_assignments)
 {
     list<Assignment>::iterator searchit=list_of_assignments.begin();

@@ -14,7 +14,7 @@ using namespace std;
 
 int main() {
     
-    string filename="AssignmentSaveFile.rtf";
+    string filename="assignmentSaveFile.txt";
     Date current_date;
     
     /*get todays date & display*/
@@ -24,7 +24,7 @@ int main() {
     /*create a list of assignments*/
     list <Assignment> list_of_assignments;
     
-    /*get initial number of assignments*/
+    /*get initial number of assignments, up to 100*/
     int num_assignments;
     do{
         cout<<"Enter initial number of assignments: ";
@@ -42,6 +42,7 @@ int main() {
         cout<<"Enter a command."<<endl<<"'a' to add assignment(s)"<<endl<<"'d' to delete an assignement"<<endl<< "'c' to mark an assignment as complete"<<endl<<"'s' search your current assignments"<<endl<<"'q' to quit"<<endl<<"Enter: ";
         cin>>in;
         
+        /*begin switch statement*/
         switch (in)
         {
             case 'a':
@@ -66,8 +67,10 @@ int main() {
                     break;
                 }
                 else
+                {
                     cout<<"Cannot delete any assignments because there are no assignments to delete."<<endl;
-                break;
+                    break;
+                }
             }
             case 'c':
             {
@@ -89,79 +92,65 @@ int main() {
                         break;
                     }
                     else
+                    {
                         break;
-                    
+                    }
                 }
                 else
+                {
                     cout<<"Cannot mark complete because there are no assignments to mark complete."<<endl;
-                break;
+                    break;
+                }
             }
             case 's':
             {
                 if (!list_of_assignments.empty())
                 {
-                    list <Assignment> temp;
-                    int srch;
-                    cout<<"Choose what you would like to search for: "<<endl<<"Complete Assignments (1)"<<endl<<"Incomplete Assignments (2)"<<endl<<"Class Name (3)"<<endl<<"Assignment ID (4)"<<endl<<"Due Date (5)"<<endl<<"Enter: ";
-                    cin>>srch;
-                    if (srch==4)
-                    {
-                        showlist(searchListID(list_of_assignments));
-                    }
-                    else if (srch==5)
-                    {
-                        temp=searchListDate(list_of_assignments);
-                        showlist(temp);
-                    }
-                    else if (srch==1)
-                    {
-                        temp=searchListComp(list_of_assignments);
-                        showlist(temp);
-                    }
-                    else if (srch==2)
-                    {
-                        temp=searchListIncomp(list_of_assignments);
-                        showlist(temp);
-                    }
-                    else if (srch==3)
-                    {
-                        temp=searchListName(list_of_assignments);
-                        showlist(temp);
-                    }
+                    searchList(list_of_assignments);
+                    break;
                 }
                 else
                 {
                     cout<<"Cannot search because there are no assignments to search through."<<endl;
                     break;
                 }
+            }
+            case 'f':
+            {
+                saveToFile(list_of_assignments, filename);
                 break;
             }
-                        /*case 's':
-                         saveToFile(list_of_assignments, filename);*/
-                    case 'q':
-                        char answer;
-                        if (!list_of_assignments.empty())
-                        {
-                            cout<<"You still have uncompleted assignments remaining. Are you sure you want to quit? (y/n): ";
-                            cin>>answer;
-                            switch (answer)
-                            {
-                                case 'n':
-                                    in='a';
-                                    break;
-                                default:
-                                    cout<<"Quitting..."<<endl;
-                                    break;
-                            }
-                        }
-                        else
-                            cout<<"Quitting..."<<endl;
+            case 'q':
+            {
+                char answer;
+                if (!list_of_assignments.empty())
+                {
+                    cout<<"You still have uncompleted assignments remaining. Are you sure you want to quit? (y/n): ";
+                    cin>>answer;
+                    if (answer=='n')
+                    {
+                        in='a';
                         break;
-                    default:
-                        cout<<"default...quitting"<<endl;
-                        in='q';
+                    }
+                    else
+                    {
+                        cout<<"Quitting..."<<endl;
+                        break;
+                    }
                 }
-        }while (in!='q');
+                else
+                {
+                    cout<<"Quitting..."<<endl;
+                    break;
+                }
+            }
+            default:
+            {
+                cout<<"default...quitting"<<endl;
+                in='q';
+            }
+        }
         
-        return 0;
-    }
+    }while (in!='q');
+    return 0;
+}
