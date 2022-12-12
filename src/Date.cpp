@@ -133,11 +133,20 @@ Date& operator-(const Date& date, const Date& dateadded)
   return *retdate;
 }
 
-/*Overload == opertaor for Date class*/
+/*Overload == operator for Date class*/
 bool operator==(const Date& date, const Date& dateadded)
 {
     if (((date.month==dateadded.month) & (date.day==dateadded.day)) & (date.year==dateadded.year))
         return true;
     else
         return false;
+}
+
+/*Overload != operator for Date class*/
+bool operator==(const Date& date, const Date& dateadded)
+{
+    if (((date.month==dateadded.month) & (date.day==dateadded.day)) & (date.year==dateadded.year))
+        return false;
+    else
+        return true;
 }
