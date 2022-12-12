@@ -143,7 +143,7 @@ bool operator==(const Date& date, const Date& dateadded)
 }
 
 /*Overload != operator for Date class*/
-bool operator==(const Date& date, const Date& dateadded)
+bool operator!=(const Date& date, const Date& dateadded)
 {
     if (((date.month==dateadded.month) & (date.day==dateadded.day)) & (date.year==dateadded.year))
         return false;
