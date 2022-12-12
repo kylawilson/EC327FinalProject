@@ -16,7 +16,6 @@ bool testOrganizeLife();
 
 int main() {
     
-    string filename="assignmentSaveFile.txt";
     Date current_date;
     
     /*get todays date & display*/
@@ -41,7 +40,7 @@ int main() {
     
     char in;
     do{
-        cout<<"Enter a command."<<endl<<"'a' to add assignment(s)"<<endl<<"'d' to delete an assignement"<<endl<< "'c' to mark an assignment as complete"<<endl<<"'s' search your current assignments"<<endl<<"'q' to quit"<<endl<<"Enter: ";
+        cout<<"Enter a command."<<endl<<"'a' to add assignment(s)"<<endl<<"'d' to delete an assignement"<<endl<< "'c' to mark an assignment as complete"<<endl<<"'s' search your current assignments"<<endl<<"'f' to save to a file"<<endl<<"'q' to quit"<<endl<<"Enter: ";
         cin>>in;
         
         /*begin switch statement*/
@@ -112,6 +111,9 @@ int main() {
             }
             case 'f':
             {
+                string filename;
+                cout<<"Enter the file name (ex. 'savefile.txt'): ";
+                cin>>filename;
                 saveToFile(list_of_assignments, filename);
                 break;
             }
@@ -151,16 +153,4 @@ int main() {
 }
 
 
-
-/*include test case definitions*/
-/*bool testOrganizeLife()
- {
- list<Assignment> l_o_c;
- Date today=getCurrentDate();
- int num=1;
- OrganizeLife(l_o_c,today,num);
- if (l_o_c==)
- cout<<"OrganizeLife function passed.";
- return true;
- }*/
  

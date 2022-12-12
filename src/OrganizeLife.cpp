@@ -85,6 +85,7 @@ void saveToFile(list <Assignment> list_of_assignments, string filename)
         }
     }
     file.close();
+    cout<<"Saved to file "<<filename<<endl;
     /* check to see if the file was propely saved*/
     /*string myText;
     ifstream MyReadFile(filename);
@@ -97,37 +98,36 @@ void saveToFile(list <Assignment> list_of_assignments, string filename)
     // Close the file
     MyReadFile.close();*/
 }
+/*search list based on inputted value*/
 void searchList(list <Assignment> list_of_assignments)
 {
     list <Assignment> temp;
     int srch;
     cout<<"Choose what you would like to search for: "<<endl<<"Complete Assignments (1)"<<endl<<"Incomplete Assignments (2)"<<endl<<"Class Name (3)"<<endl<<"Assignment ID (4)"<<endl<<"Due Date (5)"<<endl<<"Enter: ";
     cin>>srch;
-    if (srch==4)
+    switch (srch)
     {
-        showlist(searchListID(list_of_assignments));
-    }
-    else if (srch==5)
-    {
-        temp=searchListDate(list_of_assignments);
-        showlist(temp);
-    }
-    else if (srch==1)
-    {
-        temp=searchListComp(list_of_assignments);
-        showlist(temp);
-    }
-    else if (srch==2)
-    {
-        temp=searchListIncomp(list_of_assignments);
-        showlist(temp);
-    }
-    else if (srch==3)
-    {
-        temp=searchListName(list_of_assignments);
-        showlist(temp);
+        case 4:
+            showlist(searchListID(list_of_assignments));
+            break;
+        case 5:
+            showlist(searchListDate(list_of_assignments));
+            break;
+        case 1:
+            showlist(searchListComp(list_of_assignments));
+            break;
+        case 2:
+            showlist(searchListIncomp(list_of_assignments));
+            break;
+        case 3:
+            showlist(searchListName(list_of_assignments));
+            break;
+        default:
+            cout<<"Invalid option."<<endl;
+            break;
     }
 }
+/*search list for complete assignments*/
 list <Assignment> searchListComp(list <Assignment> list_of_assignments)
 {
     list<Assignment>::iterator searchit=list_of_assignments.begin();
@@ -140,6 +140,7 @@ list <Assignment> searchListComp(list <Assignment> list_of_assignments)
     }
     return list_of_assignments;
 }
+/*search list of assignments for incomplete assignments*/
 list <Assignment> searchListIncomp(list <Assignment> list_of_assignments)
 {
     list<Assignment>::iterator searchit=list_of_assignments.begin();
@@ -150,6 +151,7 @@ list <Assignment> searchListIncomp(list <Assignment> list_of_assignments)
     }
     return list_of_assignments;
 }
+/*search list of assignments for a particular name*/
 list <Assignment> searchListName(list <Assignment> list_of_assignments)
 {
     string classnm;
@@ -164,6 +166,7 @@ list <Assignment> searchListName(list <Assignment> list_of_assignments)
     return list_of_assignments;
 }
 
+/*search list of assignments for a particular ID*/
 list <Assignment> searchListID(list <Assignment> list_of_assignments)
 {
     int id;
@@ -177,6 +180,7 @@ list <Assignment> searchListID(list <Assignment> list_of_assignments)
     }
     return list_of_assignments;
 }
+/*search list of assignment for a particular date*/
 list <Assignment> searchListDate(list <Assignment> list_of_assignments)
 {
     int m, d, y;
@@ -196,6 +200,7 @@ list <Assignment> searchListDate(list <Assignment> list_of_assignments)
     return list_of_assignments;
 }
 
+/* get current date and print*/
 Date getCurrentDate()
 {
     /* get current date and print*/
