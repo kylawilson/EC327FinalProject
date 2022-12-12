@@ -143,7 +143,21 @@ void Assignment::setAssignmentID(int id)
     id_num=id;
 }
 
-int Assignment::getHrsOfWork()
+int Assignment::getHrsOfWork() const
 {
     return hours_of_work;
+}
+
+/*Overload == operator for Date class*/
+bool operator==(const Assignment& asmnt, const Assignment& asmnt1)
+{
+    if (((asmnt.GetDueDate()==asmnt1.GetDueDate()) & (asmnt.getTodaysDate()==asmnt1.getTodaysDate())) & (asmnt.GetClassName()==asmnt1.GetClassName()) & (asmnt.getStatus()==asmnt.getStatus()) & (asmnt.GetAssignmentType()==asmnt1.GetAssignmentType()))
+        return true;
+    else
+        return false;
+}
+
+Date Assignment::getTodaysDate() const
+{
+    return todays_date;
 }

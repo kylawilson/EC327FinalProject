@@ -12,6 +12,8 @@
 
 using namespace std;
 
+bool testOrganizeLife();
+
 int main() {
     
     string filename="assignmentSaveFile.txt";
@@ -50,6 +52,7 @@ int main() {
                 cout<<"Enter number of assignments: ";
                 cin>>num_assignments;
                 OrganizeLife(list_of_assignments, current_date, num_assignments);
+                showlist(list_of_assignments);
                 break;
             }
             case 'd':
@@ -146,3 +149,18 @@ int main() {
     }while (in!='q');
     return 0;
 }
+
+
+
+/*include test case definitions*/
+/*bool testOrganizeLife()
+ {
+ list<Assignment> l_o_c;
+ Date today=getCurrentDate();
+ int num=1;
+ OrganizeLife(l_o_c,today,num);
+ if (l_o_c==)
+ cout<<"OrganizeLife function passed.";
+ return true;
+ }*/
+ 

@@ -34,7 +34,9 @@ public:
   void markComplete();
   string getStatus() const;
   void setAssignmentID(int);
-  int getHrsOfWork();
+  int getHrsOfWork() const;
+  Date getTodaysDate() const;
   friend ostream& operator << (ostream &os, const Assignment &assignment);
+  friend bool operator==(const Assignment& asmnt, const Assignment& asmnt1);
 };
 #endif /* Assignment_hpp */

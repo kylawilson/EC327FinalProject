@@ -16,15 +16,14 @@ void OrganizeLife(list <Assignment> & list_of_assignments, Date current_date, in
       /*collect due date for assignment*/
       int monthdue, daydue, yeardue, type;
       string classname;
-      cout<<"Assignment "<<(list_of_assignments.size()+1)<<": "<<endl;
+      cout<<endl<<"Assignment "<<(list_of_assignments.size()+1)<<": "<<endl;
       cout<<"Enter due date; month (#): ";
       cin>>monthdue;
       cout<<"Enter due date; day (#): ";
       cin>>daydue;
       cout<<"Enter due date; year (#): ";
       cin>>yeardue;
-      
-      /*insert error-catching if the due date is before today's date*/
+
       cout<<"Enter class name: ";
       cin>>classname;
       Date duedate(monthdue, daydue, yeardue);
@@ -40,7 +39,6 @@ void OrganizeLife(list <Assignment> & list_of_assignments, Date current_date, in
       {
           cout<<"Error in constructing assignment object"<<endl;
       }
-      /*Assignments[i]=new Assignment(current_date,duedate,type,classname);*/
   }
 }
 
@@ -50,7 +48,7 @@ void showlist(list<Assignment> list_of_assignments)
     total_work=0;
     for (list<Assignment>::iterator it=list_of_assignments.begin(); it != list_of_assignments.end(); ++it)
     {
-        cout <<"Assignment "<<count<<"{"<<endl<<*it<<"}"<<endl;
+        cout <<endl<<"Assignment "<<count<<"{"<<endl<<*it<<"}"<<endl<<endl;
         it->setAssignmentID(count);
         count++;
         total_work+=it->getHrsOfWork();
