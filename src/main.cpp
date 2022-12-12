@@ -17,6 +17,7 @@ int main() {
     string filename="AssignmentSaveFile.rtf";
     Date current_date;
     
+    /*get todays date & display*/
     current_date=getCurrentDate();
     cout<<current_date<<endl;
     

@@ -14,11 +14,15 @@ using namespace std;
 
 class Date
 {
+private:
+    int month, day, year;
 public:
-  int month, day, year;
   Date(int, int, int);
   Date();
   virtual ~Date();
+    int getMonth();
+    int getDay();
+    int getYear();
   friend ostream& operator<<(ostream&os, const Date& date);
   friend Date& operator+(const Date& date, const Date& dateadded);
   friend Date& operator-(const Date& date, const Date& dateadded);

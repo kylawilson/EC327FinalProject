@@ -13,6 +13,7 @@ void OrganizeLife(list <Assignment> & list_of_assignments, Date current_date, in
     /*intake all assignmnets & their details, create assignment objects for each*/
   for (int i=0; i<num_assignments;i++)
   {
+      /*collect due date for assignment*/
       int monthdue, daydue, yeardue, type;
       string classname;
       cout<<"Assignment "<<(list_of_assignments.size()+1)<<": "<<endl;
@@ -31,7 +32,14 @@ void OrganizeLife(list <Assignment> & list_of_assignments, Date current_date, in
       cout<<"1 for Homework"<<endl<<"2 for Project"<<endl<<"3 for exam/study"<<endl<<"4 for other..."<<endl;
       cout<<"Enter: ";
       cin>>type;
-      list_of_assignments.push_back(Assignment(current_date,duedate,type,classname));
+      try
+      {
+          list_of_assignments.push_back(Assignment(current_date,duedate,type,classname));
+      }
+      catch (int e)
+      {
+          cout<<"Error in constructing assignment object"<<endl;
+      }
       /*Assignments[i]=new Assignment(current_date,duedate,type,classname);*/
   }
 }

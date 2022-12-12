@@ -11,10 +11,10 @@
 Assignment::Assignment(Date in_date)
 :todays_date(in_date), is_complete(false)
 {
-    if (todays_date.year==due_date.year & todays_date.month==due_date.month)
-        days_until_due=due_date.day-todays_date.day;
-    else if (todays_date.year==due_date.year & todays_date.month<=due_date.month)
-        days_until_due=((due_date.month-todays_date.month)*30)+(due_date.day-todays_date.day);
+    if (todays_date.getYear()==due_date.getYear() & todays_date.getMonth()==due_date.getMonth())
+        days_until_due=due_date.getDay()-todays_date.getDay();
+    else if (todays_date.getYear()==due_date.getYear() & todays_date.getMonth()<=due_date.getMonth())
+        days_until_due=((due_date.getMonth()-todays_date.getMonth())*30)+(due_date.getDay()-todays_date.getDay());
         
     
 }
@@ -22,9 +22,36 @@ Assignment::Assignment(Date in_date)
 Assignment::Assignment(Date in_date, Date out_date, int type, string classnm)
 :todays_date(in_date), due_date(out_date), is_complete(false), classname(classnm)
 {
-    Date time_till_due=out_date-in_date;
-    cout<<time_till_due;
-    days_until_due=time_till_due.day+((time_till_due.month)*30)+((time_till_due.year)*365);
+    days_until_due=due_date.getDay()-todays_date.getDay();
+    months_until_due=due_date.getMonth()-todays_date.getMonth();
+    years_until_due=due_date.getYear()-todays_date.getYear();
+        if ((due_date.getYear())<(todays_date.getYear()))
+        {
+            cout<<"Past date entered..."<<endl;
+            throw(1);
+            
+        }
+        if ((due_date.getYear())==(todays_date.getYear()))
+        {
+            if ((due_date.getMonth())<(todays_date.getMonth()))
+            {
+                cout<<"Past date entered..."<<endl;
+                throw(1);
+            }
+            else if (((due_date.getMonth())==(todays_date.getMonth())) & ((due_date.getDay())<(todays_date.getDay())))
+            {
+                cout<<"Past date entered..."<<endl;
+                throw(1);
+            }
+        }
+    if (days_until_due<0)
+    {
+        days_until_due=31+days_until_due;
+    }
+    if ((months_until_due<0) & (years_until_due==1))
+        years_until_due=0;
+    if (months_until_due<0)
+        months_until_due=12+months_until_due;
     if (is_complete==true)
         status="Complete";
     else
@@ -82,6 +109,18 @@ int Assignment::GetDaysUntilDue() const
     return days_until_due;
     
 }
+/*Assignment member function that returns days until assignment is due*/
+int Assignment::GetMonthsUntilDue() const
+{
+    return months_until_due;
+    
+}
+/*Assignment member function that returns days until assignment is due*/
+int Assignment::GetYearsUntilDue() const
+{
+    return years_until_due;
+    
+}
 /*Returns assignment */
 string Assignment::GetAssignmentType() const
 {
@@ -95,7 +134,7 @@ string Assignment::GetClassName() const
 
 ostream& operator << (ostream &os, const Assignment& assignment)
 {
-  os << "Class: "<<assignment.GetClassName()<<endl<<"Due Date: "<< assignment.GetDueDate() << "Assignment Type: " << assignment.GetAssignmentType() << endl << "Days Until Due: "<< assignment.GetDaysUntilDue() << endl << "Status: " << assignment.getStatus() << endl;
+  os << "Class: "<<assignment.GetClassName()<<endl<<"Due Date: "<< assignment.GetDueDate() << "Assignment Type: " << assignment.GetAssignmentType() << endl << "Days Until Due: "<< assignment.GetDaysUntilDue() << endl<< "Months Until Due: "<< assignment.GetMonthsUntilDue() << endl <<"Years Until Due: "<<assignment.GetYearsUntilDue()<<endl<< "Status: " << assignment.getStatus() << endl;
   return os;
 }
 

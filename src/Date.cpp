@@ -7,10 +7,34 @@
 
 #include "Date.hpp"
 
+int Date::getMonth()
+{
+    return month;
+}
+int Date::getDay()
+{
+    return day;
+}
+int Date::getYear()
+{
+    return year;
+}
+
 /*Date constructor*/
 Date::Date(int m, int d, int y)
-:month(m),day(d),year(y)
 {
+    if (m<0 |m>12)
+        month=1;
+    else
+        month=m;
+    if (d<0 |d>31)
+        day=1;
+    else
+        day=d;
+    if (y<2022)
+        year=2023;
+    else
+        year=y;
 }
 
 /* default Date constructor*/
@@ -62,7 +86,7 @@ Date& operator+ (const Date& date, const Date& dateadded)
 }
 
 /*Overload - operator for Date class*/
-Date& operator- (const Date& date, const Date& dateadded)
+Date& operator-(const Date& date, const Date& dateadded)
 {
   int mnew, dnew, ynew;
     mnew=(date.month)-(dateadded.month);
