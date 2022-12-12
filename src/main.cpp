@@ -45,10 +45,12 @@ int main() {
         switch (in)
         {
             case 'a':
+            {
                 cout<<"Enter number of assignments: ";
                 cin>>num_assignments;
                 OrganizeLife(list_of_assignments, current_date, num_assignments);
                 break;
+            }
             case 'd':
             {
                 if (!list_of_assignments.empty())
@@ -84,6 +86,9 @@ int main() {
                     {
                         deleteAssignment(list_of_assignments, c);
                     }
+                    else
+                        break;
+                    
                 }
                 else
                     cout<<"Cannot mark complete because there are no assignments to mark complete."<<endl;
@@ -91,43 +96,41 @@ int main() {
             }
             case 's':
             {
-                char srch;
-                cout<<"Choose what you would like to search for: "<<endl<<"Complete Assignments ('c')"<<endl<<"Incomplete Assignments ('i')"<<endl<<"Class Name ('n')"<<endl<<"Assignment ID ('a')"<<endl<<"Due Date('d')"<<endl<<"Enter: ";
-                cin>>srch;
                 list <Assignment> temp;
-                switch(srch)
-                {
-                    case'a':
+                int srch;
+                cout<<"Choose what you would like to search for: "<<endl<<"Complete Assignments (1)"<<endl<<"Incomplete Assignments (2)"<<endl<<"Class Name (3)"<<endl<<"Assignment ID (4)"<<endl<<"Due Date(5)"<<endl<<"Enter: ";
+                cin>>srch;
+                    if (srch==1)
                     {
                         temp=searchListID(list_of_assignments);
                         showlist(temp);
                         break;
                     }
-                    case 'd':
+                    else if (srch==2)
                     {
                         temp=searchListDate(list_of_assignments);
                         showlist(temp);
                         break;
                     }
-                    case 'c':
+                    else if (srch==3)
                     {
                         temp=searchListComp(list_of_assignments);
                         showlist(temp);
                         break;
                     }
-                    case 'i':
+                    else if (srch==4)
                     {
                         temp=searchListIncomp(list_of_assignments);
                         showlist(temp);
                         break;
                     }
-                    case 'n':
+                    else if (srch==5)
                     {
                         temp=searchListName(list_of_assignments);
                         showlist(temp);
                         break;
                     }
-                }
+                
             }
                         /*case 's':
                          saveToFile(list_of_assignments, filename);*/

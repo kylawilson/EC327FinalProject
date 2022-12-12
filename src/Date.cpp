@@ -11,18 +11,6 @@
 Date::Date(int m, int d, int y)
 :month(m),day(d),year(y)
 {
-    if (m>12 | m<0){
-        cout<<"Thats not a month..."<<endl;
-        exit(0);
-    }
-    if (d>31 |d<0){
-        cout<<"Thats not a day..."<<endl;
-        exit(0);
-    }
-    if (y<0){
-        cout<<"Thats not a year..."<<endl;
-        exit(0);
-    }
 }
 
 /* default Date constructor*/

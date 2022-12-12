@@ -94,61 +94,56 @@ void saveToFile(list <Assignment> list_of_assignments, string filename)
 
 list <Assignment> searchListComp(list <Assignment> list_of_assignments)
 {
-    list<Assignment> retlist;
     list<Assignment>::iterator searchit=list_of_assignments.begin();
     while (searchit!=list_of_assignments.end())
     {
-        if ((searchit->getStatus())=="Complete")
-            retlist.push_back(*searchit);
-        
+        if ((searchit->getStatus())!="Complete")
+        {
+            searchit=list_of_assignments.erase(searchit);
+        }
     }
-    return retlist;
+    return list_of_assignments;
 }
 list <Assignment> searchListIncomp(list <Assignment> list_of_assignments)
 {
-    list<Assignment> retlist;
     list<Assignment>::iterator searchit=list_of_assignments.begin();
     while (searchit!=list_of_assignments.end())
     {
-        if ((searchit->getStatus())=="Incomplete")
-            retlist.push_back(*searchit);
-        
+        if ((searchit->getStatus())!="Incomplete")
+            searchit=list_of_assignments.erase(searchit);
     }
-    return retlist;
+    return list_of_assignments;
 }
 list <Assignment> searchListName(list <Assignment> list_of_assignments)
 {
     string classnm;
-    list<Assignment> retlist;
     list<Assignment>::iterator searchit=list_of_assignments.begin();
     cout<<"What class name are you looking for?: ";
     cin>>classnm;
     while (searchit!=list_of_assignments.end())
     {
-        if ((searchit->GetClassName())==classnm)
-            retlist.push_back(*searchit);
+        if ((searchit->GetClassName())!=classnm)
+            searchit=list_of_assignments.erase(searchit);
     }
-    return retlist;
+    return list_of_assignments;
 }
 
 list <Assignment> searchListID(list <Assignment> list_of_assignments)
 {
     int id;
-    list<Assignment> retlist;
     list<Assignment>::iterator searchit=list_of_assignments.begin();
     cout<<"What Assignment ID are you searching for?: ";
     cin>>id;
     while (searchit!=list_of_assignments.end())
     {
-        if (searchit->id_num==id)
-            retlist.push_back(*searchit);
+        if (searchit->id_num!=id)
+            searchit=list_of_assignments.erase(searchit);
     }
-    return retlist;
+    return list_of_assignments;
 }
 list <Assignment> searchListDate(list <Assignment> list_of_assignments)
 {
     int m, d, y;
-    list<Assignment> retlist;
     list<Assignment>::iterator searchit=list_of_assignments.begin();
     cout<<"What Due Date are you searching for?"<<endl<<"Month (#): ";
     cin>>m;
@@ -159,8 +154,8 @@ list <Assignment> searchListDate(list <Assignment> list_of_assignments)
     Date compdate(m,d,y);
     while (searchit!=list_of_assignments.end())
     {
-        if ((searchit->GetDueDate())==compdate)
-            retlist.push_back(*searchit);
+        if ((searchit->GetDueDate())!=compdate)
+            searchit=list_of_assignments.erase(searchit);
     }
-    return retlist;
+    return list_of_assignments;
 }
