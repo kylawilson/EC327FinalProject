@@ -16,7 +16,6 @@ class Assignment
 private:
   Date due_date, todays_date;
   int days_until_due, months_until_due, years_until_due, hours_of_work;
-  char priority;
   bool is_complete;
   string classname, status, assignment_type;
 public:
